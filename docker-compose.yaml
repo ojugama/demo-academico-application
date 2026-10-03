@@ -1,5 +1,6 @@
 services:
   app:
+    build: .
     image: demoacademico
     container_name: demoacademico-app
     ports:
