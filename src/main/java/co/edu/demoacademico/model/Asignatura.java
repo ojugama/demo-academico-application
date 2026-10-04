@@ -3,7 +3,9 @@ package co.edu.demoacademico.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "asignaturas")
+@Table(name = "asignaturas", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_asignatura_codigo", columnNames = {"codigo"})
+})
 public class Asignatura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
