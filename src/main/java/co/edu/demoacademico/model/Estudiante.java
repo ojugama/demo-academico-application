@@ -3,16 +3,18 @@ package co.edu.demoacademico.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "estudiantes")
+@Table(name = "estudiantes", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_estudiante_email", columnNames = {"email"})
+})
 public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     private String email;
 
     public Estudiante() {

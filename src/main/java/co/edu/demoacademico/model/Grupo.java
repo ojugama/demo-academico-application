@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "grupos", uniqueConstraints = {
-        @UniqueConstraint(name = "uk_grupo_codigo", columnNames = {"codigo_grupo"})
+        @UniqueConstraint(name = "uk_grupo_codigo_asignatura", columnNames = {"codigo", "id_asignatura"})
 })
 public class Grupo {
     @Id
@@ -14,11 +14,11 @@ public class Grupo {
     @Column(name = "codigo", nullable = false, length = 20)
     private String codigo;
 
-    @Column(name = "codigo", nullable = false)
-    private Integer cupoMaximo;
+    @Column(name = "maximo_cupos", nullable = false)
+    private Integer maximoCupos;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "asignatura_id", nullable = false, foreignKey = @ForeignKey(name = "fk_grupo_asignatura"))
+    @JoinColumn(name = "id_asignatura", nullable = false, foreignKey = @ForeignKey(name = "fk_grupo_asignatura"))
     private Asignatura asignatura;
 
     public Grupo() {
@@ -40,12 +40,12 @@ public class Grupo {
         this.codigo = codigo;
     }
 
-    public Integer getCupoMaximo() {
-        return cupoMaximo;
+    public Integer getMaximoCupos() {
+        return maximoCupos;
     }
 
-    public void setCupoMaximo(Integer cupoMaximo) {
-        this.cupoMaximo = cupoMaximo;
+    public void setMaximoCupos(Integer cupoMaximo) {
+        this.maximoCupos = cupoMaximo;
     }
 
     public Asignatura getAsignatura() {

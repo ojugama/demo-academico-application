@@ -12,14 +12,14 @@ public class Asignatura {
     @Column(name = "codigo", nullable = false, length = 20)
     private String codigo;
 
-    @Column(name = "nombre", nullable = false, length = 20)
+    @Column(name = "nombre", nullable = false, length = 120)
     private String nombre;
 
     @Column(name = "creditos", nullable = false)
     private Integer creditos;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "programa_id", nullable = false, foreignKey = @ForeignKey(name = "fk_asignatura_programa"))
+    @JoinColumn(name = "id_programa", nullable = false, foreignKey = @ForeignKey(name = "fk_asignatura_programa"))
     private Programa programa;
 
     public Asignatura() {

@@ -6,7 +6,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "matriculas", uniqueConstraints = {
-        @UniqueConstraint(name = "uk_matricula_estudiante_grupo", columnNames = {"estudiante_id", "grupo_id"})
+        @UniqueConstraint(name = "uk_matricula_estudiante_grupo", columnNames = {"id_estudiante", "id_grupo"})
 })
 public class Matricula {
     @Id
@@ -14,11 +14,11 @@ public class Matricula {
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "estudiante_id", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_estudiante"))
+    @JoinColumn(name = "id_estudiante", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_estudiante"))
     private Estudiante estudiante;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "grupo_id", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_grupo"))
+    @JoinColumn(name = "id_grupo", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_grupo"))
     private Grupo grupo;
 
     @Column(name = "fecha_registro", nullable = false)
