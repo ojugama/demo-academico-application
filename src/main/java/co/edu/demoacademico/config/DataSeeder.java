@@ -1,13 +1,13 @@
 package co.edu.demoacademico.config;
 
-import co.edu.demoacademico.model.AsignaturaEntity;
-import co.edu.demoacademico.model.EstudianteEntity;
-import co.edu.demoacademico.model.GrupoEntity;
-import co.edu.demoacademico.model.ProgramaEntity;
-import co.edu.demoacademico.repository.AsignaturaRepository;
-import co.edu.demoacademico.repository.EstudianteRepository;
-import co.edu.demoacademico.repository.GrupoRepository;
-import co.edu.demoacademico.repository.ProgramaRepository;
+import co.edu.demoacademico.asignaturas.AsignaturaEntity;
+import co.edu.demoacademico.asignaturas.AsignaturaRepository;
+import co.edu.demoacademico.estudiantes.EstudianteEntity;
+import co.edu.demoacademico.estudiantes.EstudianteRepository;
+import co.edu.demoacademico.grupos.GrupoEntity;
+import co.edu.demoacademico.grupos.GrupoRepository;
+import co.edu.demoacademico.programas.ProgramaEntity;
+import co.edu.demoacademico.programas.ProgramaRepository;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +44,7 @@ public class DataSeeder {
             if (estudianteRepository.count() > 0 || programaRepository.count() > 0 || asignaturaRepository.count() > 0 || grupoRepository.count() > 0)
                 return;
 
-            Faker faker = new Faker(new Locale("es"));
+            Faker faker = new Faker(Locale.of("es"));
 
             // 1) Estudiantes
             EstudianteEntity[] estudiantes = new EstudianteEntity[cantidadEstudiantes];
