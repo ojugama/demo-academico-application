@@ -26,7 +26,7 @@ public class DataSeeder {
             Faker faker = new Faker(new Locale("es"));
             int count = 0;
 
-            while(count < cantidad) {
+            while (count < cantidad) {
                 String nombre = faker.name().fullName();
                 String email = ("est" + count + "_" + faker.internet().emailAddress())
                         .toLowerCase()

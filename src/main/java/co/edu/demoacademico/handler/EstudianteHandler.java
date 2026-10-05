@@ -5,32 +5,35 @@ import co.edu.demoacademico.dto.EstudianteDTO;
 import co.edu.demoacademico.dto.EstudianteUpdateDTO;
 import co.edu.demoacademico.model.EstudianteEntity;
 import co.edu.demoacademico.service.EstudianteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EstudianteHandler {
-    @Autowired
-    private EstudianteService estudianteService;
+    private final EstudianteService estudianteService;
 
-    private EstudianteDTO toDto(EstudianteEntity estudiante) {
+    public EstudianteHandler(EstudianteService estudianteService) {
+        this.estudianteService = estudianteService;
+    }
+
+    private EstudianteDTO toDto(EstudianteEntity estudianteEntity) {
         EstudianteDTO estudianteDTO = new EstudianteDTO();
-        estudianteDTO.setId(estudiante.getId());
-        estudianteDTO.setNombre(estudiante.getNombre());
-        estudianteDTO.setEmail(estudiante.getEmail());
+
+        estudianteDTO.setId(estudianteEntity.getId());
+        estudianteDTO.setNombre(estudianteEntity.getNombre());
+        estudianteDTO.setEmail(estudianteEntity.getEmail());
+
         return estudianteDTO;
     }
 
     public EstudianteDTO create(EstudianteCreateDTO in) {
-        EstudianteEntity entity = new EstudianteEntity();
-        entity.setNombre(in.getNombre());
-        entity.setEmail(in.getEmail());
+        EstudianteEntity estudianteEntity = new EstudianteEntity();
 
-        EstudianteEntity savedEntity = estudianteService.create(entity);
+        estudianteEntity.setNombre(in.getNombre());
+        estudianteEntity.setEmail(in.getEmail());
 
-        return toDto(savedEntity);
+        return toDto(estudianteService.create(estudianteEntity));
     }
 
     public EstudianteDTO findById(Long id) {
@@ -42,13 +45,12 @@ public class EstudianteHandler {
     }
 
     public EstudianteDTO update(Long id, EstudianteUpdateDTO in) {
-        EstudianteEntity entity = new EstudianteEntity();
-        entity.setNombre(in.getNombre());
-        entity.setEmail(in.getEmail());
+        EstudianteEntity estudianteEntity = new EstudianteEntity();
 
-        EstudianteEntity updatedEntity = estudianteService.update(id, entity);
+        estudianteEntity.setNombre(in.getNombre());
+        estudianteEntity.setEmail(in.getEmail());
 
-        return toDto(updatedEntity);
+        return toDto(estudianteService.update(id, estudianteEntity));
     }
 
     public void delete(Long id) {
