@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "estudiantes", uniqueConstraints = {
         @UniqueConstraint(name = "uk_estudiante_email", columnNames = {"email"})
 })
-public class Estudiante {
+public class EstudianteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,10 +17,10 @@ public class Estudiante {
     @Column(name = "email", nullable = false)
     private String email;
 
-    public Estudiante() {
+    public EstudianteEntity() {
     }
 
-    public Estudiante(Long id, String nombre, String email) {
+    public EstudianteEntity(Long id, String nombre, String email) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "asignaturas", uniqueConstraints = {
         @UniqueConstraint(name = "uk_asignatura_codigo", columnNames = {"codigo"})
 })
-public class Asignatura {
+public class AsignaturaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +22,9 @@ public class Asignatura {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_programa", nullable = false, foreignKey = @ForeignKey(name = "fk_asignatura_programa"))
-    private Programa programa;
+    private ProgramaEntity programa;
 
-    public Asignatura() {
+    public AsignaturaEntity() {
     }
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class Asignatura {
         this.creditos = creditos;
     }
 
-    public Programa getPrograma() {
+    public ProgramaEntity getPrograma() {
         return programa;
     }
 
-    public void setPrograma(Programa programa) {
+    public void setPrograma(ProgramaEntity programa) {
         this.programa = programa;
     }
 }

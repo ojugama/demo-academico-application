@@ -10,7 +10,7 @@ public class GrupoCreateDTO {
 
     @NotNull(message = "La cantidad máxima de cupos es requerida.")
     @Min(value = 1, message = "El mínimo de cupos es 1.")
-    private Integer maximoCupos;
+    private Long maximoCupos;
 
     @NotNull(message = "El id de la asignatura es requerido.")
     private Long idAsignatura;
@@ -26,11 +26,11 @@ public class GrupoCreateDTO {
         this.codigo = codigo;
     }
 
-    public Integer getMaximoCupos() {
+    public Long getMaximoCupos() {
         return maximoCupos;
     }
 
-    public void setMaximoCupos(Integer maximoCupos) {
+    public void setMaximoCupos(Long maximoCupos) {
         this.maximoCupos = maximoCupos;
     }
 

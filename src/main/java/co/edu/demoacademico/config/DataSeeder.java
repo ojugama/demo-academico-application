@@ -1,6 +1,6 @@
 package co.edu.demoacademico.config;
 
-import co.edu.demoacademico.model.Estudiante;
+import co.edu.demoacademico.model.EstudianteEntity;
 import co.edu.demoacademico.repository.EstudianteRepository;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +33,7 @@ public class DataSeeder {
                         .replace(" ", "")
                         .replace("..", ".");
 
-                Estudiante estudiante = new Estudiante();
+                EstudianteEntity estudiante = new EstudianteEntity();
                 estudiante.setNombre(nombre);
                 estudiante.setEmail(email);
 

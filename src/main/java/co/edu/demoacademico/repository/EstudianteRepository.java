@@ -1,14 +1,14 @@
 package co.edu.demoacademico.repository;
 
-import co.edu.demoacademico.model.Estudiante;
+import co.edu.demoacademico.model.EstudianteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
+public interface EstudianteRepository extends JpaRepository<EstudianteEntity, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByEmailAndIdNot(String email, Long id);
 
-    Optional<Estudiante> findByEmail(String email);
+    Optional<EstudianteEntity> findByEmail(String email);
 }

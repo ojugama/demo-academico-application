@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "programas", uniqueConstraints = {
         @UniqueConstraint(name = "uk_programa_codigo", columnNames = {"codigo"})
 })
-public class Programa {
+public class ProgramaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +17,7 @@ public class Programa {
     @Column(name = "nombre", nullable = false, length = 120)
     private String nombre;
 
-    public Programa() {
+    public ProgramaEntity() {
     }
 
     public Long getId() {

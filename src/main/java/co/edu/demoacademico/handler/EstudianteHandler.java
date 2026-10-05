@@ -3,8 +3,8 @@ package co.edu.demoacademico.handler;
 import co.edu.demoacademico.dto.EstudianteCreateDTO;
 import co.edu.demoacademico.dto.EstudianteDTO;
 import co.edu.demoacademico.dto.EstudianteUpdateDTO;
-import co.edu.demoacademico.model.Estudiante;
-import co.edu.demoacademico.service.IEstudianteService;
+import co.edu.demoacademico.model.EstudianteEntity;
+import co.edu.demoacademico.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EstudianteHandler {
     @Autowired
-    private IEstudianteService estudianteService;
+    private EstudianteService estudianteService;
 
-    private EstudianteDTO toDto(Estudiante estudiante) {
+    private EstudianteDTO toDto(EstudianteEntity estudiante) {
         EstudianteDTO estudianteDTO = new EstudianteDTO();
         estudianteDTO.setId(estudiante.getId());
         estudianteDTO.setNombre(estudiante.getNombre());
@@ -24,11 +24,11 @@ public class EstudianteHandler {
     }
 
     public EstudianteDTO create(EstudianteCreateDTO in) {
-        Estudiante entity = new Estudiante();
+        EstudianteEntity entity = new EstudianteEntity();
         entity.setNombre(in.getNombre());
         entity.setEmail(in.getEmail());
 
-        Estudiante savedEntity = estudianteService.create(entity);
+        EstudianteEntity savedEntity = estudianteService.create(entity);
 
         return toDto(savedEntity);
     }
@@ -42,11 +42,11 @@ public class EstudianteHandler {
     }
 
     public EstudianteDTO update(Long id, EstudianteUpdateDTO in) {
-        Estudiante entity = new Estudiante();
+        EstudianteEntity entity = new EstudianteEntity();
         entity.setNombre(in.getNombre());
         entity.setEmail(in.getEmail());
 
-        Estudiante updatedEntity = estudianteService.update(id, entity);
+        EstudianteEntity updatedEntity = estudianteService.update(id, entity);
 
         return toDto(updatedEntity);
     }

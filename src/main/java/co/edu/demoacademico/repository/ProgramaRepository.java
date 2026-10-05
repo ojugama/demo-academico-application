@@ -1,10 +1,8 @@
 package co.edu.demoacademico.repository;
 
-import co.edu.demoacademico.model.Programa;
+import co.edu.demoacademico.model.ProgramaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProgramaRepository extends JpaRepository<Programa, Long> {
+public interface ProgramaRepository extends JpaRepository<ProgramaEntity, Long> {
     boolean existsByCodigo(String codigo);
-
-    boolean existsByCodigoAndIdNot(String codigo, Long id);
 }
