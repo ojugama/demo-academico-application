@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class EstudianteServiceImpl implements EstudianteService {
+public class EstudianteServiceImpl implements EstudianteService, EstudianteQueryPort {
     private final EstudianteRepository estudianteRepository;
 
     public EstudianteServiceImpl(EstudianteRepository estudianteRepository) {

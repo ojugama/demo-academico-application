@@ -3,7 +3,7 @@ package co.edu.demoacademico.asignaturas;
 import co.edu.demoacademico.common.exception.BusinessException;
 import co.edu.demoacademico.common.exception.NotFoundException;
 import co.edu.demoacademico.programas.ProgramaEntity;
-import co.edu.demoacademico.programas.ProgramaRepository;
+import co.edu.demoacademico.programas.ProgramaQueryPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class AsignaturaServiceImpl implements AsignaturaService {
+public class AsignaturaServiceImpl implements AsignaturaService, AsignaturaQueryPort {
     private final AsignaturaRepository asignaturaRepository;
-    private final ProgramaRepository programaRepository;
+    private final ProgramaQueryPort programaQueryPort;
 
-    public AsignaturaServiceImpl(AsignaturaRepository asignaturaRepository, ProgramaRepository programaRepository) {
+    public AsignaturaServiceImpl(AsignaturaRepository asignaturaRepository, ProgramaQueryPort programaQueryPort) {
         this.asignaturaRepository = asignaturaRepository;
-        this.programaRepository = programaRepository;
+        this.programaQueryPort = programaQueryPort;
     }
 
     @Override
@@ -26,8 +26,7 @@ public class AsignaturaServiceImpl implements AsignaturaService {
             throw new BusinessException("El ID del programa es requerido.");
         }
 
-        ProgramaEntity existingPrograma = programaRepository.findById(asignatura.getPrograma().getId())
-                .orElseThrow(() -> new NotFoundException("Programa no encontrado con ID: " + asignatura.getPrograma().getId() + "."));
+        ProgramaEntity existingPrograma = programaQueryPort.findById(asignatura.getPrograma().getId());
 
         if (asignaturaRepository.existsByCodigo(asignatura.getCodigo())) {
             throw new BusinessException("Ya existe una asignatura con el código: " + asignatura.getCodigo() + ".");

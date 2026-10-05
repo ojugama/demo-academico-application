@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ProgramaServiceImpl implements ProgramaService {
+public class ProgramaServiceImpl implements ProgramaService, ProgramaQueryPort {
     private final ProgramaRepository programaRepository;
 
     public ProgramaServiceImpl(ProgramaRepository programaRepository) {

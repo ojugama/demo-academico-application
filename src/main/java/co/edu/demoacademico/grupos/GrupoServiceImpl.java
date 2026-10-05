@@ -1,7 +1,7 @@
 package co.edu.demoacademico.grupos;
 
 import co.edu.demoacademico.asignaturas.AsignaturaEntity;
-import co.edu.demoacademico.asignaturas.AsignaturaRepository;
+import co.edu.demoacademico.asignaturas.AsignaturaQueryPort;
 import co.edu.demoacademico.common.exception.BusinessException;
 import co.edu.demoacademico.common.exception.NotFoundException;
 import org.springframework.data.domain.Page;
@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class GrupoServiceImpl implements GrupoService {
+public class GrupoServiceImpl implements GrupoService, GrupoQueryPort {
     private final GrupoRepository grupoRepository;
-    private final AsignaturaRepository asignaturaRepository;
+    private final AsignaturaQueryPort asignaturaQueryPort;
 
-    public GrupoServiceImpl(GrupoRepository grupoRepository, AsignaturaRepository asignaturaRepository) {
+    public GrupoServiceImpl(GrupoRepository grupoRepository, AsignaturaQueryPort asignaturaQueryPort) {
         this.grupoRepository = grupoRepository;
-        this.asignaturaRepository = asignaturaRepository;
+        this.asignaturaQueryPort = asignaturaQueryPort;
     }
 
     @Override
@@ -26,9 +26,7 @@ public class GrupoServiceImpl implements GrupoService {
             throw new BusinessException("El ID de la asignatura es requerido.");
         }
 
-        AsignaturaEntity existingAsignatura = asignaturaRepository.findById(grupo.getAsignatura().getId())
-                .orElseThrow(() -> new NotFoundException("Asignatura no encontrada con ID: "
-                        + grupo.getAsignatura().getId() + "."));
+        AsignaturaEntity existingAsignatura = asignaturaQueryPort.findById(grupo.getAsignatura().getId());
 
         grupo.setAsignatura(existingAsignatura);
 
