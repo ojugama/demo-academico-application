@@ -5,7 +5,6 @@ import co.edu.demoacademico.dto.AsignaturaDTO;
 import co.edu.demoacademico.model.AsignaturaEntity;
 import co.edu.demoacademico.model.ProgramaEntity;
 import co.edu.demoacademico.service.AsignaturaService;
-import co.edu.demoacademico.service.ProgramaService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class AsignaturaHandler {
     private final AsignaturaService asignaturaService;
 
-    public AsignaturaHandler(AsignaturaService asignaturaService, ProgramaService programaService) {
+    public AsignaturaHandler(AsignaturaService asignaturaService) {
         this.asignaturaService = asignaturaService;
     }
 

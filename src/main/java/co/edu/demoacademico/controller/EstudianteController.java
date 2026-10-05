@@ -8,7 +8,6 @@ import co.edu.demoacademico.dto.EstudianteUpdateDTO;
 import co.edu.demoacademico.handler.EstudianteHandler;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/estudiantes")
 public class EstudianteController {
-    @Autowired
-    private EstudianteHandler estudianteHandler;
+    private final EstudianteHandler estudianteHandler;
+
+    public EstudianteController(EstudianteHandler estudianteHandler) {
+        this.estudianteHandler = estudianteHandler;
+    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<EstudianteDTO>> create(

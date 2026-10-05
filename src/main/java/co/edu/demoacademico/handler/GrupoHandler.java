@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class GrupoHandler {
     private final GrupoService grupoService;
 
-    public GrupoHandler(GrupoService grupoService, AsignaturaService asignaturaService) {
+    public GrupoHandler(GrupoService grupoService) {
         this.grupoService = grupoService;
     }
 
