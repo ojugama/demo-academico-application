@@ -19,7 +19,7 @@ spring:
     console:
       enabled: true
       settings:
-        web-allowhers: true
+        web-allow-others: true
       path: /h2-console
 springdoc:
   api-docs:
@@ -31,4 +31,7 @@ springdoc:
 app:
   seed:
     enabled: true
-    cantidad: 500
+    cantidad-estudiantes: 50
+    cantidad-programas: 3
+    cantidad-asignaturas: 10
+    cantidad-grupos: 20
